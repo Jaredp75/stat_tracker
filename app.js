@@ -38,3 +38,27 @@ app.engine('mustache', mustacheExpress());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'mustache')
 app.set('views', './views');
+
+
+
+
+
+
+app.use('/', rootRouter);
+app.use('/api', apiRouter);
+
+app.get('/activities', function(req, res) {
+  User.find().then(function(user) {
+    Stat.find().then(function(stat) {
+      res.render('addEntry', {user: user, stat: stat});
+    });
+  });
+});
+
+
+app.post('/add_task/', function(req, res) {
+  console.log(req.body);
+  User.create(req.body).then(function(user) {
+    res.redirect('/');
+  });
+});
