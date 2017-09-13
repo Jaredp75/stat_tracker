@@ -11,7 +11,7 @@ router.use(bodyParser.json());
 
 //const mongoURL = 'mongodb://localhost:27017/test';
 
-const Stat = require("../models/user");
+const User = require("../models/user");
 
 
 
@@ -20,43 +20,55 @@ const Stat = require("../models/user");
 //const MongoClient = require('mongodb').MongoClient;
 
 
-router.get("/activities/:id", function(req, res) {
-  User.find({_id: req.params.id}).then(function (results) {
-    return res.json(results);
-  });
-});
+router.get("/activities", function(req, res) {
+  User.find({_id: req.params.id}).then(function (activity) {
+    return res.json(activity);
+  })
+})
 
-router.put('/activities/:id', function(req, res){
+router.post('/activities', function(req, res) {
+  let newActivity = new Activity(req,body);
+  newActivity.save(function (activity) {
+    res.json({activity: activity});
+  })
+})
+
+router.get('/activities/:id', function(req, res) {
+  User.find({_id: req.params.id}).then(function (activity) {
+    res.json(activity);
+  })
+})
+
+
+
+router.put('/activities/:id', function(req, res) {
   User.findOneAndUpdate(
-    {_id: req.params.id},
-    {activity: req.body.activty,
-      date: req.body.date,
-      amount: req.body.amount})
-      .then(function (results) {
-      return res.json(results);
-  });
-});
+    {_id: req.params.id}, req.body).then(function (activity) {
+      res.json(activity);
+  })
+})
 
-router.delete('/stats/:id', function(req, res){
-  User.findOne({_id: req.params.id}).then(function(results) {
-    let tempdate = this.date;
+router.delete('/activities/:id', function(req, res){
+  User.remove({_id: req.params.id}).then(function (activity) {
+    res.json({message: 'Deleted'});
 
-  });
-  User.delete({date: tempdate}).then(function(results) {
-    return res.json(results);
-  });
-});
+  })
+})
 
 
-router.get('/activities', function(req, res) {
-  User.find().then(function(results) {
-    return res.json(results);
-  });
-});
+//router.get('/activities', function(req, res) {
+//  User.find().then(function(results) {
+//    return res.json(results);
+//  });
+//});
 
 
 
-router.post
+//router.post('/activities', function(req, res) {
+//  User.create(req.body).then(function(results) {
+//    return res.join(results);
+//  });
+//});
 
 
 

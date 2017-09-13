@@ -29,10 +29,10 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.engine('mustache', mustacheExpress());
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'mustache')
-app.set('views', './views');
+//app.engine('mustache', mustacheExpress());
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'mustache')
+//app.set('views', './views');
 
 
 
@@ -40,7 +40,7 @@ app.set('views', './views');
 
 
 
-app.use('/api', apiRouter);
+//app.use('/api', apiRouter);
 
 
 
@@ -48,7 +48,7 @@ app.use('/api', apiRouter);
 
 app.listen(3000, function () {
     console.log('Successfully started express application!')
-})
+});
 
 
 

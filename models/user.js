@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
 
-const statSchema = new mongoose.Schema({
-  date: {type: String},
-  username: {type: String},
-  ft made: Number,
-  ft taken: Number,
-  amountType: (type: String),
-},
-  {timestamps: true}
-);
+const userSchema = new mongoose.Schema({
+  activity: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  amount: {
+    type: Number,
+    default: 1
+  }
+
+});
 
 
 const User = mongoose.model('User', userSchema);
