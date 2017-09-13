@@ -18,25 +18,25 @@
       </div>
     {{/messages.error}}
     <form method="POST" action="/add_task/">
-      <input type="text" id="username-input" name="username" placeholder="Username" />
       <input type="text" id="date-input" name="date" placeholder="Date" />
-      <input type="text" id="activity-input" name="activity" placeholder="Activity" />
-      <input type="text" id="amount-input" name="amount" placeholder="Number of Free Throws" />
+      <input type="text" id="username-input" name="username" placeholder="Username" />
+      <input type="text" id="amount-input" name="amount" placeholder="Free Throws Made" />
+      <input type="text" id="amount-input" name="amount" placeholder="Free Throws Taken" />
       <button type="submit">Add</button>
     </form>
 
       <div class="navigation">
         {{#user.length}}
-          <h2>User List</h2>
+          <h2>Users</h2>
 
         {{/user.length}}
         {{#user}}
           <div>
-            <p>UserName: {{ username }}</p>
+            <p>User: {{ username }}</p>
             <p>Date: {{ date }}</p>
-            <p>Activity: {{activity}}</p>
-            <p>Amount: {{amount}}</p>
-            <h3>Update Daily Activity</h3>
+            <p>Free Throws Made: {{amount}} | Free Throws Taken: {{amount}}</p>
+
+            <h3>Update Free Throw Activity</h3>
             <form method="POST" action='/api/activities/{{_id}}'>
               <input(type="hidden", name="_method", value="PUT">
               <input type="text" id="activity-input" name="activity" placeholder="Activity" />
@@ -48,10 +48,12 @@
 			          <input type="submit" name="" value="Delete">
 			      </form>
             <form action="/api/activities/{{id}}/stats" method="POST">
-              <input type="text" id="activity-input" name="activity" placeholder="Activity Name" />
-              <input type="text" id="amount-input" name="amount" placeholder="Number Stat" />
               <input type="text" id="date-input" name="date" placeholder="Date" />
-			        <input type="submit" name="" value="Update Stat">
+              <input type="text" id="username-input" name="username" placeholder="Username" />
+              <input type="text" id="amount-input" name="amount" placeholder="Free Throws Made" />
+              <input type="text" id="amount-input" name="amount" placeholder="Free Throws Taken" />
+
+			        <input type="submit" name="" value="Update">
 			      </form>
 
           </div>
@@ -59,7 +61,7 @@
         {{#stat.length}}
         <p>Stats:</p>
         <p>Delete Stat by Date:</p>
-        <p>Date Format:"YYYY-MM-DD"</p>
+        <p>Date Format:"DD-MM-YYYY"</p>
         <form action="/api/stat/date_delete" method="POST">
           <input type="text" id="date-input" name="date" placeholder="Date" />
           <input type="submit" name="" value="Delete">

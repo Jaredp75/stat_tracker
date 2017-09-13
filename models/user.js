@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const statSchema = new mongoose.Schema({
-  username: {type: String},
   date: {type: String},
-  activity: {type: String},
-  amount: Number,
+  username: {type: String},
+  ft made: Number,
+  ft taken: Number,
   amountType: (type: String),
 },
   {timestamps: true}
@@ -13,6 +13,4 @@ const statSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = {
-    User
-}
+module.exports = User;
