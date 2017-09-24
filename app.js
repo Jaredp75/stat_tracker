@@ -5,27 +5,31 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const mongodb = require('mongodb');
 
 const app = express();
 
 mongoose.Promise = require('bluebird');
-const mongoURL = 'mongodb://localhost:27017/test_stattracker';
+const mongoURL = 'mongodb://localhost:27017/stat_api'
 
-mongoose.connect(mongoURL, {useMongoClient: true});
+mongoose.connect(mongoURL, {
+  useMongoClient: true
+});
 
-const Stat = require("./models/user");
+const User = require("./models/user");
 
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
 }));
 
 // put routes here
 const apiRouter = require("./routes/api");
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -40,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-//app.use('/api', apiRouter);
+app.use('/api', apiRouter);
 
 
 

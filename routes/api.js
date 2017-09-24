@@ -20,15 +20,15 @@ const User = require("../models/user");
 //const MongoClient = require('mongodb').MongoClient;
 
 
-router.get("/activities/:id", function(req, res) {
-  User.find({_id: req.params.id}).then(function (results) {
+router.get('/activities/:id', function(req, res) {
+  User.find({_id: req.params.id}).then(function(results) {
     return res.json(results);
   });
 });
 
 router.put('/activities/:id', function(req, res) {
   User.findOneAndUpdate(
-    {_id: req.body.activity,
+    {_id: req.params.id},
     {activity: req.body.activity,
       date: req.body.date,
       amount: req.body.amount})
@@ -37,11 +37,15 @@ router.put('/activities/:id', function(req, res) {
       });
   });
 
+router.post('/activities/:id/stats', function(req, res){
+
+});
+
 router.delete("/stats/:id", function(req, res){
   User.findOne({id: req.params.id})
   .then(function(results){
     let tempdate = this.date;
-    console.log(temdate);
+    console.log(tempdate);
   });
   User.delete({date: tempdate})
   .then(function(results){
@@ -69,25 +73,20 @@ router.delete("/activities/:id", function(req, res){
 // })
 
 router.get("/activities", function(req, res) {
-  User.find().then(function (results) {
+  User.find().then(function(results) {
     return res.json(results);
   });
 });
 
 
 
-router.post("/activities", function(req, res) {
-  User.create(req.body).then(function (results) {
+router.post("/api/activities", function(req, res) {
+  User.create(req.body).then(function(results) {
       return res.json(results);
-  })
-})
+  });
+});
 
-router.delete('/activities/:id', function(req, res){
-  User.remove({_id: req.params.id}).then(function (activity) {
-    res.json({message: 'Deleted'});
 
-  })
-})
 
 
 //router.get('/activities', function(req, res) {
