@@ -6,12 +6,10 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   date: {
-    type: Date,
-    default: Date.now
+    type: String
   },
   amount: {
-    type: Number,
-    default: 1
+    type: String
   }
 
 });

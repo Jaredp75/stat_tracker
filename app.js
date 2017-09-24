@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 mongoose.Promise = require('bluebird');
-const mongoURL = 'mongodb://localhost:27017/test_stattracker'
+const mongoURL = 'mongodb://localhost:27017/test_stattracker';
 
 mongoose.connect(mongoURL, {useMongoClient: true});
 
