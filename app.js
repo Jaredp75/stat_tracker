@@ -33,10 +33,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.engine('mustache', mustacheExpress());
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'mustache')
-//app.set('views', './views');
+// app.engine('mustache', mustacheExpress());
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'mustache')
+// app.set('views', './views');
 
 
 
@@ -63,9 +63,9 @@ app.listen(3000, function () {
 
 // put routes here
 
-//app.get('/favicon.ico', function(req, res) {
+// app.get('/favicon.ico', function(req, res) {
 //  res.status(204);
-//})
+// })
 
 //app.get('/add/', function (req, res) {
 //  res.render('add_player');
