@@ -10,11 +10,14 @@
   "author": "Jared Patterson",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.18.0",
+    "bootstrap": "^4.0.0-beta",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "mongoose": "^4.11.11",
+    "mustache": "^2.3.0",
     "mustache-express": "^1.2.5",
     "path": "^0.12.7"
   }
